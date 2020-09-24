@@ -17,13 +17,13 @@ client.on("ready", () => {
     //client.user.setActivity(`...`, { type: 'WATCHING' });
 });
 
-client.on("message", async message => {   
+client.on("message", async message => {
 
     // console.log(message.author.id);
 
     // It's good practice to ignore other bots. This also makes your bot ignore itself
     // and not get into a spam loop (we call that "botception").
-    if (message.author.bot) return;    
+    if (message.author.bot) return;
 
     // prefix: !, / and >
     if (!/^(!|\/|>)/.test(message.content)) return;
@@ -40,12 +40,13 @@ client.on("message", async message => {
     switch (command) {
         case "faucet":
             let msg = `Sorry please wait for ${config.limit} hours between token requests from the same account!`;
-            if(!cache.has(message.author.id)){
+            if (!cache.has(message.author.id)) {
                 msg = await faucet.send(args[0]);
                 cache.set(message.author.id, 1, 1000 * 60 * 60 * config.limit);
             }
-            
-            message.channel.send(msg);
+
+            //message.channel.send(msg);
+            await message.reply(msg);
             break;
 
         // case "help":
