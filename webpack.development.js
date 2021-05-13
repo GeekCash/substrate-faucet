@@ -11,13 +11,10 @@ module.exports = function (env) {
     ///----------------------------
     {
 
-      mode: 'development',
+      
       target: 'node',
-      devtool: '#source-map',
-      node: {
-        __dirname: true,
-        __filename: true,
-      },
+      // devtool: 'source-map',
+     
       entry: {
 
         'app': './src/app.js',
