@@ -18,7 +18,7 @@ client.on("ready", () => {
 });
 
 client.on("message", async message => {
-    if (message.channel.id != config.channel_id) return;
+    if (message.channel.id != config.channel) return;
 
     // It's good practice to ignore other bots. This also makes your bot ignore itself
     // and not get into a spam loop (we call that "botception").
@@ -35,7 +35,6 @@ client.on("message", async message => {
     const command = args.shift().toLowerCase();
 
     // Let's go with a few common example commands! Feel free to delete or change those.
-    console.log("+++ command is ", command);
 
     switch (command) {
        
