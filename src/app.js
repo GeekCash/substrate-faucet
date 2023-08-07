@@ -19,7 +19,9 @@ client.on("ready", () => {
 
 client.on("message", async message => {
 
-    // console.log(message.author.id);
+    console.log(message.author.id);
+
+    console.log(message.content);
 
     // It's good practice to ignore other bots. This also makes your bot ignore itself
     // and not get into a spam loop (we call that "botception").
@@ -36,9 +38,12 @@ client.on("message", async message => {
     const command = args.shift().toLowerCase();
 
     // Let's go with a few common example commands! Feel free to delete or change those.
+    console.log("+++ command is ", command);
 
     switch (command) {
+       
         case "faucet":
+            console.log("faucet command");
             let msg = `Sorry please wait for ${config.limit} hours between token requests from the same account!`;
             if (!cache.has(message.author.id)) {
                 msg = await faucet.send(args[0]);
@@ -55,6 +60,7 @@ client.on("message", async message => {
 
         //     message.channel.send(msg);
         default:
+            await message.reply("command format is !faucet <address>");
             break;
     }
 
@@ -62,4 +68,22 @@ client.on("message", async message => {
 });
 
 
-client.login(config.token);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// client.login(config.token);
+client.login("MTEzNjkzNjUyODA2NTYwNTc0Mg.GiMfXz.MtLS7vrKeEOZ_MegjigRPOx8kfn0WDf-qBA2To");

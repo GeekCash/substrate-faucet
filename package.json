@@ -11,8 +11,8 @@
   "license": "MIT",
   "dependencies": {
     "@babel/runtime": "^7.14.0",
-    "@polkadot/api": "^4.9.3-18",
-    "@polkadot/util-crypto": "^6.3.2-13",
+    "@polkadot/api": "^8.0.2",
+    "@polkadot/util-crypto": "^10.3.1",
     "bn.js": "^5.2.0",
     "discord.js": "^12.5.3",
     "lru-cache": "^6.0.0"

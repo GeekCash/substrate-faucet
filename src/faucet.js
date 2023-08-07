@@ -47,6 +47,4 @@ module.exports = class Faucet {
         return `Invalid address! Plese use the Geek network format with address type ${this.config.address_type}! >> <https://my.geekcash.org/#/accounts>`;
 
     }
-
-
 };
