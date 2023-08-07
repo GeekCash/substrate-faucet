@@ -18,10 +18,7 @@ client.on("ready", () => {
 });
 
 client.on("message", async message => {
-
-    console.log(message.author.id);
-
-    console.log(message.content);
+    if (message.channel.id != config.channel_id) return;
 
     // It's good practice to ignore other bots. This also makes your bot ignore itself
     // and not get into a spam loop (we call that "botception").
@@ -68,22 +65,5 @@ client.on("message", async message => {
 });
 
 
+client.login(config.token);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// client.login(config.token);
-client.login("MTEzNjkzNjUyODA2NTYwNTc0Mg.GiMfXz.MtLS7vrKeEOZ_MegjigRPOx8kfn0WDf-qBA2To");
