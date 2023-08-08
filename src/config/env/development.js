@@ -13,5 +13,5 @@ module.exports = {
     mnemonic: '',
     amount: 1,
     limit: 12, // The time limit for sending requests is in hours.
-    channel: '1136948824913477682'
+    channel: '1138005423870455870'
 };
