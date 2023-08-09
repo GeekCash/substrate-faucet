@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "GeekCash Faucet Bot",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack --progress --watch",
+    "build": "webpack --progress",
+    "internal": "cross-env NODE_ENV=development CHAIN_SPEC=internal webpack --progress --watch",
+    "staging": "cross-env NODE_ENV=development CHAIN_SPEC=staging webpack --progress --watch",
     "prod": "del ./dist && cross-env NODE_ENV=production webpack --mode production --progress",
     "start": "node ./dist/app.js"
   },
