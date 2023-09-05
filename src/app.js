@@ -6,8 +6,8 @@ const Discord = require("discord.js"),
 
 const client = new Discord.Client();
 const faucet = new Faucet(config);
-const cache = new LRU();
-
+const team_channel_cache = new LRU();
+const partner_channel_cache = new LRU();
 
 client.on("ready", () => {
     // This event will run if the bot starts, and logs in, successfully.
@@ -18,7 +18,7 @@ client.on("ready", () => {
 });
 
 client.on("message", async message => {
-    if (message.channel.id != config.channel) return;
+    if ((message.channel.id != config.team_channel) &&  (message.channel.id != config.partner_channel))return;
 
     // It's good practice to ignore other bots. This also makes your bot ignore itself
     // and not get into a spam loop (we call that "botception").
@@ -41,11 +41,20 @@ client.on("message", async message => {
         case "faucet":
             console.log("faucet command");
             let msg = `Sorry please wait for ${config.limit} hours between token requests from the same account!`;
-            if (!cache.has(message.author.id)) {
-                msg = await faucet.send(args[0]);
-                cache.set(message.author.id, 1, 1000 * 60 * 60 * config.limit);
+            if (message.channel.id == config.team_channe) {
+                if (!team_channel_cache.has(message.author.id)) {
+                    // fund the address in staging env for team channel
+                    msg = await faucet.send(args[0], message.channel.id == config.team_channel);
+                    team_channel_cache.set(message.author.id, 1, 1000 * 60 * 60 * config.limit);
+                }
+            } else {
+                if (!partner_channel_cache.has(message.author.id)) {
+                    // fund the address in staging env for team channel
+                    msg = await faucet.send(args[0], message.channel.id == config.team_channel);
+                    partner_channel_cache.set(message.author.id, 1, 1000 * 60 * 60 * config.limit);
+                }
             }
-
+            
             //message.channel.send(msg);
             await message.reply(msg);
             break;
